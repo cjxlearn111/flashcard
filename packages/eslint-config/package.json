@@ -1,0 +1,10 @@
+{
+  "name": "@flashcard/eslint-config",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./base": "./base.js"
+  },
+  "main": "./base.js",
+  "type": "module"
+}

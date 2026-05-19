@@ -1,0 +1,73 @@
+# 知识提炼思维链 v3.3 —— 技术简报生成器
+# 你可以在改此文件调整思维链，不需要改 Python 代码
+
+metadata:
+  name: "技术简报提炼链 v3.3"
+  output_format: "JSON"
+  style_constraint: "全篇禁止使用破折号（——）。逻辑转折用句号、分号或自然衔接词替代。"
+
+output_schema:
+  conclusion: "一句话核心结论"
+  domain: "领域分类 (AI与技术/认知与行为/产品与商业/编程与工具/通用)"
+  terms:
+    - term: "术语名称"
+      definition: "20字内定义"
+  claim_groups:
+    - claim: "主主张（一句话）"
+      reasoning: "推理链（3-5句，无破折号）"
+      support: "支撑证据（无置信度标注）"
+  principles:
+    - condition: "IF 条件"
+      action: "THEN 行动"
+      boundary: "失效边界"
+  tensions:
+    - description: "矛盾或缺失描述"
+      affects: "影响的主张/原则"
+  evidence_map:
+    - claim_index: 0
+      evidence: "证据内容"
+      confidence: "A/B/C"
+      source: "出处"
+
+stages:
+  - stage: 1_分层提取
+    description: "从原文中分离出结论、术语、主张、证据、原则、矛盾"
+    actions:
+      - extract_conclusion: "找出全文最核心的主张，凝练为一句话"
+      - extract_terms: "抽取关键术语，每个配一行20字内定义"
+      - extract_claims: "识别所有核心主张，聚类为不超过5个论证单元"
+      - extract_evidence: "为每个主张匹配支撑证据，记录置信度(A/B/C)和出处"
+      - extract_principles: "提炼可迁移的IF-THEN规则，包含条件、行动、失效边界"
+      - detect_tensions: "检测逻辑矛盾、未证主张、失效边界缺失"
+
+  - stage: 2_论证流构建
+    description: "生成论证段落"
+    rules:
+      - "全段禁止使用破折号"
+      - "支撑句中严禁出现置信度标注字样"
+      - "段落以粗体主张句开头"
+      - "推理段用句号或分号连接，控制在3-5句"
+
+  - stage: 3_证据附录合成
+    description: "证据去重并整理"
+    rules:
+      - "同一证据多次引用仅保留一条"
+      - "按置信度A/B/C排序"
+
+  - stage: 4_简报合成
+    order:
+      - "## 核心结论"
+      - "## 术语速查"
+      - "## 论证骨架"
+      - "## 可复用原则"
+      - "## 待裁决与边界"
+      - "## 附录：证据来源与置信度"
+
+  - stage: 5_质量校验
+    checks:
+      - "一句话结论是否仅一句话"
+      - "术语表不超过10行"
+      - "全篇是否未出现任何破折号"
+      - "论证段落的支撑句中是否不含置信度标注"
+      - "每条原则是否包含失效边界"
+      - "附录表格是否覆盖所有被引证据"
